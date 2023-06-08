@@ -1,0 +1,147 @@
+<div class="card border-0 shadow d-block ml-auto mr-auto" *ngIf="add_clicked">
+  <div class="card-body border-0">
+    <div class="border-0 bg-white text-center font-weight-bold mb-3">
+      <h4>Add consignment</h4>
+    </div>
+    <!-- Add Error message -->
+    <div *ngIf="addConsignment_errorMsg && current_actionType === ADD_CONSIGNMENT_FAILURE"
+         class="alert alert-danger mb-4">
+      {{addConsignment_errorMsg}}
+    </div>
+
+    <!-- Add Success message -->
+    <div *ngIf="addConsignment_successMsg && current_actionType === ADD_CONSIGNMENT_SUCCESS"
+         class="alert alert-success mb-4">
+      {{addConsignment_successMsg}}
+    </div>
+
+    <form (ngSubmit)="onAdd(
+        description.value,
+        street.value,
+        city.value,
+        state.value,
+        zipcode.value,
+        country.value,
+        price.value,
+        currency.value
+    )">
+      <!-- description -->
+      <div class="form-group row pl-3">
+        <label for="description" class="col-md-4 col-form-label d-flex justify-content-start">
+          <span [style.color]="'red'">*</span>&nbsp;&nbsp;Description
+        </label>
+
+        <div class="col-md-8">
+          <input name='description' type='text'
+                 class='form-control' id='description'
+                 placeholder="Enter some description"
+                 #description ngModel required>
+        </div>
+      </div>
+
+      <!-- Street -->
+      <div class="form-group row pl-3">
+        <label for="street" class="col-md-4 col-form-label d-flex justify-content-start">
+          <span [style.color]="'red'">*</span>&nbsp;&nbsp;Street address
+        </label>
+
+        <div class="col-md-8">
+          <input name='street' type='text'
+                 class='form-control' id='street'
+                 placeholder="Enter street"
+                 #street ngModel required>
+        </div>
+      </div>
+
+      <!-- city -->
+      <div class="form-group row pl-3">
+        <label for="city" class="col-md-4 col-form-label d-flex justify-content-start">
+          <span [style.color]="'red'">*</span>&nbsp;&nbsp;City
+        </label>
+
+        <div class="col-md-8">
+          <input name='city' type='text'
+                 class='form-control' id='city'
+                 placeholder="Enter city"
+                 #city ngModel required>
+        </div>
+      </div>
+
+      <!-- state -->
+      <div class="form-group row pl-3">
+        <label for="state" class="col-md-4 col-form-label d-flex justify-content-start">
+          <span [style.color]="'red'">*</span>&nbsp;&nbsp;State
+        </label>
+
+        <div class="col-md-8">
+          <input name='state' type='text'
+                 class='form-control' id='state'
+                 placeholder="Enter state"
+                 #state ngModel required>
+        </div>
+      </div>
+
+      <!-- Zipcode -->
+      <div class="form-group row pl-3">
+        <label for="zipcode" class="col-md-4 col-form-label d-flex justify-content-start">
+          <span [style.color]="'red'">*</span>&nbsp;&nbsp;Zipcode
+        </label>
+
+        <div class="col-md-8">
+          <input name='zipcode' type='text'
+                 class='form-control' id='zipcode'
+                 placeholder="Enter zipcode"
+                 #zipcode ngModel required>
+        </div>
+      </div>
+
+      <!-- Country -->
+      <div class="form-group row pl-3">
+        <label for="country" class="col-md-4 col-form-label d-flex justify-content-start">
+          <span [style.color]="'red'">*</span>&nbsp;&nbsp;Country
+        </label>
+
+        <div class="col-md-8">
+          <input name='country' type='text'
+                 class='form-control' id='country'
+                 placeholder="Enter country"
+                 #country ngModel required>
+        </div>
+      </div>
+
+      <!-- Price -->
+      <div class="form-group row pl-3">
+        <label for="price" class="col-md-4 col-form-label d-flex justify-content-start">
+          <span [style.color]="'red'">*</span>&nbsp;&nbsp;Price
+        </label>
+
+        <div class="col-md-8">
+          <input name='price' type='text'
+                 class='form-control' id='price'
+                 placeholder="Enter price"
+                 #price ngModel required>
+        </div>
+      </div>
+
+      <!-- Currency -->
+      <div class="form-group row pl-3">
+        <label for="currency" class="col-md-4 col-form-label d-flex justify-content-start">
+          <span [style.color]="'red'">*</span>&nbsp;&nbsp;Currency
+        </label>
+
+        <div class="col-md-8">
+          <input name='currency' type='text'
+                 class='form-control' id='currency'
+                 placeholder="Enter currency"
+                 #currency ngModel required>
+        </div>
+      </div>
+
+      <div class="text-center" role="group">
+        <button type="submit" class="btn btn-secondary">Add</button>
+        <button type="button" class="btn btn-outline-secondary ml-2" (click)="onCancel()">Cancel</button>
+      </div>
+
+    </form>
+  </div>
+</div>

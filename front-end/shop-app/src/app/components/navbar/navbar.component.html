@@ -1,0 +1,67 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" *ngIf="currentUser"
+     [routerLink]="['/dashboard', currentUser.firstName + currentUser.lastName]">
+    <img [src]="'assets/img/logo_transparent.png'" alt='logo' id='logo' class='mr-3 ml-3'>
+    Cogent Fedex
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+          aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item"
+          *ngIf="currentUser"
+          [ngClass]="setActive('dashboard')">
+        <a class="nav-link" [routerLink]="['/dashboard', currentUser.firstName + currentUser.lastName]">
+          Dashboard
+        </a>
+      </li>
+
+      <li class="nav-item"
+          *ngIf="currentUser"
+          [ngClass]="setActive('consignments')">
+        <a class="nav-link" routerLink="/consignments">
+          <div class="d-flex align-items-center">
+            <i class="fas fa-box">&nbsp;&nbsp;</i>
+            <span>&nbsp;</span>Consignments
+          </div>
+        </a>
+      </li>
+
+      <li class="nav-item"
+          [ngClass]="setActive('users')"
+          *ngIf="currentUser && hasAdminRole">
+        <a class="nav-link" routerLink="/users">View users</a>
+      </li>
+
+    </ul>
+    <div class="navbar-text">
+      <!-- If User authenticated -->
+      <div class="navbar-nav font-weight-bold" *ngIf="currentUser"
+           [style.color]="'rgb(76, 159, 238)'">
+        <span>
+          <i class="fas fa-user"></i>&nbsp;&nbsp;
+          {{ currentUser.firstName }} {{ currentUser.lastName }}
+        </span>
+        <span>&nbsp;&nbsp;</span>
+        <a [routerLink]="['/login']" (click)="logout()">
+          Log out
+        </a>
+      </div>
+
+      <!-- If User NOT authenticated -->
+      <div class="navbar-nav font-weight-bold" *ngIf="!currentUser">
+        <div>
+          <a href="/login">
+            Login
+          </a>
+          <span>&nbsp;|&nbsp;</span>
+          <a href="/register">
+            Register
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,113 @@
+<div class="container-wrapper">
+  <ngx-spinner bdColor="rgba(51,51,51,0.8)"
+               type="line-scale">
+  </ngx-spinner>
+
+  <div class="card mb-3 border-0 shadow">
+    <div class="card-body">
+      <img [src]="'assets/img/logo_transparent.png'" id='logo'>
+      <div class='card-title text-center mb-3'>
+        <h3><i class="fas fa-sign-in-alt"></i>&nbsp;&nbsp;Login</h3>
+      </div>
+
+      <!-- Success/error message -->
+      <p *ngIf="register_successMsg && current_actionType === REGISTER_SUCCESS"
+         class="text-center alert alert-success">
+        {{ register_successMsg }}
+      </p>
+
+      <p *ngIf="logout_successMsg && current_actionType === LOG_OUT_SUCCESS"
+         class="text-center alert alert-success">
+        {{ logout_successMsg }}
+      </p>
+
+      <p *ngIf="deleteUser_successMsg && current_actionType === DELETE_USER_SUCCESS"
+         class="text-center alert alert-success">
+        {{ deleteUser_successMsg }}
+      </p>
+
+      <p *ngIf="login_errorMsg && current_actionType === LOG_IN_FAILURE"
+         class="text-center alert alert-danger">
+        {{ login_errorMsg }}
+      </p>
+      <!-- End of Success/error message -->
+
+      <div class="card-text">
+        <form (ngSubmit)="login(email.value, password.value)">
+          <div class="form-group row pl-3">
+
+            <label for="email" class="col-md-4 col-form-label d-flex justify-content-start">
+              <span [style.color]="'red'">*</span>&nbsp;&nbsp;Email address:
+            </label>
+
+            <div class="col-md-8">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text bg-light border-right-0"
+                        [ngClass]="{
+                          'border-danger': !isEmailValid()
+                        }"
+                        id="basic-addon1">
+                    <i class="fas fa-envelope"></i>
+                  </span>
+                </div>
+                <input name='email' type='text'
+                       [ngClass]="{
+                        'is-invalid': !isEmailValid()
+                      }"
+                       class='form-control border-left-0' id='email'
+                       #email
+                       placeholder="Enter email">
+                <small [ngClass]="{
+                          'invalid-feedback': !isEmailValid()
+                        }"
+                       *ngIf="!isEmailValid()">
+                  {{ emailErrMsg }}
+                </small>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row pl-3 mb-4">
+            <label for="password" class="col-md-4 col-form-label d-flex justify-content-start">
+              <span [style.color]="'red'">*</span>&nbsp;&nbsp;Password:
+            </label>
+            <div class="col-md-8">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text bg-light border-right-0"
+                        [ngClass]="{
+                          'border-danger': !isPasswordValid()
+                        }"
+                        id="basic-addon1">
+                    <i class="fas fa-lock"></i>
+                  </span>
+                </div>
+                <input name='password' type="password"
+                       [ngClass]="{
+                        'is-invalid': !isPasswordValid()
+                      }"
+                       class="form-control border-left-0" id="password"
+                       #password
+                       placeholder="Enter password">
+                <small [ngClass]="{
+                          'invalid-feedback': !isPasswordValid()
+                        }"
+                       *ngIf="!isPasswordValid()">
+                  {{ passwordErrMsg }}
+                </small>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary d-block m-auto">
+            Login
+          </button>
+          <small class="text-muted d-block text-center mt-3">Don't have account?
+            <a href="/register">Register</a>
+          </small>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<div *ngIf="available_employees.size === 0" class="btn-group">
+  <small class="d-flex align-items-center">
+    No available employees...
+  </small>
+</div>
+
+<div *ngFor="let employee of available_employees" class="btn-group">
+  <button
+          type="button" class="btn ml-2 pt-0 pb-0 d-flex align-items-center"
+          [ngClass]="setBtnStyle(employee)"
+          (click)="onAssign(employee.email)">
+
+    <small [ngClass]="setBtnTextStyle(employee)">
+      {{ employee.firstName }} {{ employee.lastName }}
+    </small>
+  </button>
+
+</div>

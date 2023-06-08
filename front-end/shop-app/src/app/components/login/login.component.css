@@ -1,0 +1,19 @@
+.container-wrapper {
+  height: 100vh;
+  width: 100%;
+  background-color: cornflowerblue;
+}
+
+.card {
+  max-width: 565px;
+  margin: 0 auto;
+  top: 50vh;
+  transform: translate(0, -50%);
+}
+
+#logo {
+  display: block;
+  margin: auto;
+  height: 150px;
+  width: 150px;
+}

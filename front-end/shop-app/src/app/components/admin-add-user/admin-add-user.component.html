@@ -1,0 +1,94 @@
+<div class="card border-0 shadow d-block ml-auto mr-auto" *ngIf="add_clicked">
+  <div class="card-body border-0">
+    <div class="border-0 bg-white text-center font-weight-bold mb-3">
+      <h4>
+        <i class="fas fa-user-plus">&nbsp;&nbsp;</i>
+        Add admin/employee
+      </h4>
+    </div>
+    <!-- Add Error message -->
+    <div *ngIf="adminAddUser_errorMsg && adminAddUser_errorMsg.length > 0"
+         class="alert alert-danger mb-4">
+      <span class="mb-2">Possible errors:</span>
+      <span *ngFor="let error of adminAddUser_errorMsg">
+        <li>{{ error }}</li>
+      </span>
+    </div>
+
+    <!-- Add Success message -->
+    <div *ngIf="adminAddUser_successMsg"
+         class="alert alert-success mb-4">
+      {{adminAddUser_successMsg}}
+    </div>
+
+    <form (ngSubmit)="onAddUser(
+      firstName.value,
+      lastName.value,
+      email.value,
+      roles.value
+    )">
+      <!-- first name -->
+      <div class="form-group row pl-3">
+        <label for="firstName" class="col-md-4 col-form-label d-flex justify-content-start">
+          <span [style.color]="'red'">*</span>&nbsp;&nbsp;First Name:
+        </label>
+
+        <div class="col-md-8">
+          <input name='firstName' type='text'
+                 class='form-control' id='firstName'
+                 placeholder="Enter first name"
+                 #firstName ngModel required>
+        </div>
+      </div>
+
+      <!-- last name -->
+      <div class="form-group row pl-3">
+        <label for="lastName" class="col-md-4 col-form-label d-flex justify-content-start">
+          <span [style.color]="'red'">*</span>&nbsp;&nbsp;Last Name:
+        </label>
+
+        <div class="col-md-8">
+          <input name='lastName' type='text'
+                 class='form-control' id='lastName'
+                 placeholder="Enter last name"
+                 #lastName ngModel required>
+        </div>
+      </div>
+
+      <!-- email -->
+      <div class="form-group row pl-3">
+        <label for="email" class="col-md-4 col-form-label d-flex justify-content-start">
+          <span [style.color]="'red'">*</span>&nbsp;&nbsp;Email:
+        </label>
+
+        <div class="col-md-8">
+          <input name='email' type='text'
+                 class='form-control' id='email'
+                 placeholder="Enter email"
+                 #email ngModel required>
+        </div>
+      </div>
+
+      <!-- Roles: Admin/Employee -->
+      <div class="form-group row pl-3">
+        <label for="email" class="col-md-4 col-form-label d-flex justify-content-start">
+          <span [style.color]="'red'">*</span>&nbsp;&nbsp;Role:
+        </label>
+
+        <div class="col-md-8">
+          <select class="custom-select" id="roles" #roles>
+            <option value="" selected>Choose role</option>
+            <option value="ADMIN">ADMIN</option>
+            <option value="EMPLOYEE">EMPLOYEE</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="text-center" role="group">
+        <button type="submit" class="btn btn-secondary">Add</button>
+        <button type="button" class="btn btn-outline-secondary ml-2" (click)="onCancel()">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+</div>

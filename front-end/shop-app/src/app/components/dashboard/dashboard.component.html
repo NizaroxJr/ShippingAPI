@@ -1,0 +1,93 @@
+<ng-container>
+  <ngx-spinner bdColor="rgba(51,51,51,0.8)"
+               type="line-scale">
+  </ngx-spinner>
+
+  <app-navbar active="dashboard"></app-navbar>
+
+  <div class="container mb-5">
+    <h2 class="mb-4 mt-4 text-center font-weight-bold">Dashboard</h2>
+
+    <p id='nameCircle' *ngIf="current_user && firstNameTitle && lastNameTitle">
+      {{ firstNameTitle[0] }}{{ lastNameTitle[0] }}
+    </p>
+    <h4 class="mt-3 mb-1 text-center" *ngIf="current_user">
+      Welcome {{ firstNameTitle }} {{ lastNameTitle }}
+    </h4>
+
+    <div *ngIf="current_user" class="text-center">
+      <span *ngFor="let role of current_user.roles" class="mr-2">
+        <span class="badge"
+              [ngClass]="{
+                'badge-info': role === 'ADMIN',
+                'badge-success': role === 'CUSTOMER',
+                'badge-warning': role === 'EMPLOYEE'
+              }">
+          {{ role }}
+        </span>
+      </span>
+    </div>
+
+    <p class="mt-2 mb-3 text-center">
+      <i class="fas fa-user-edit">&nbsp;&nbsp;</i>Edit Information
+    </p>
+
+    <div class="card card-body m-auto">
+      <!-- Success/ Error message -->
+      <div *ngIf="editUser_errors && editUser_errors.length > 0"
+           class="alert alert-danger">
+        Possible errors:
+        <ul *ngFor="let error of editUser_errors">
+          <li>{{ error }}</li>
+        </ul>
+      </div>
+
+      <p *ngIf="editUser_successMsg "
+         class="alert alert-success">
+        {{ editUser_successMsg }}
+      </p>
+
+      <p *ngIf="login_successMsg && current_actionType === LOG_IN_SUCCESS"
+         class="alert alert-success">
+        {{ login_successMsg }}
+      </p>
+      <!-- End success/error message -->
+
+      <form>
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input type="email" class="form-control"
+                 id="email" [attr.disabled]="true"
+                 [value]="email"
+                 placeholder="Enter email">
+        </div>
+
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input type="firstName" class="form-control"
+                 id="firstName"
+                 [value]="firstNameTitle"
+                 #firstName
+                 placeholder="Enter first name">
+        </div>
+
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input type="lastName" class="form-control"
+                 id="lastName"
+                 [value]="lastNameTitle"
+                 #lastName
+                 placeholder="Enter last name">
+        </div>
+
+        <button type="submit" class="btn btn-primary mr-2" (click)="onUpdate(firstName.value, lastName.value)">
+          <i class="fas fa-pen">&nbsp;&nbsp;</i>Update
+        </button>
+        <button type="submit" class="btn btn-danger" (click)="onDelete()">
+          <i class="fas fa-trash">&nbsp;&nbsp;</i>Delete
+        </button>
+      </form>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</ng-container>
