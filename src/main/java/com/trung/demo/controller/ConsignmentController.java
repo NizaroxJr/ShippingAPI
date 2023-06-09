@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.trung.demo.model.UserConsignment;
 import com.trung.demo.services.ConsignmentService;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RestController
 public class ConsignmentController {
 	@Autowired

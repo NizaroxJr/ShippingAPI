@@ -16,7 +16,7 @@ import com.trung.demo.model.UpdateUserInfo;
 import com.trung.demo.model.User;
 import com.trung.demo.services.UserService;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RestController
 public class UserController {
 	

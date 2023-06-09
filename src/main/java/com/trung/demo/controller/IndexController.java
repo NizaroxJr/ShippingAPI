@@ -17,7 +17,7 @@ import com.trung.demo.model.AuthResponse;
 import com.trung.demo.model.User;
 import com.trung.demo.services.AuthService;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RestController
 public class IndexController {
 	
