@@ -45,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		user1.addRole(new Role("ADMIN", user1));
 		userRepository.save(user1);
 		
-		User user2 = new User("Trung", "Vo", "vtt311096@gmail.com", encodedPass, encodedPass);
+		User user2 = new User("test", "Vo", "vtt311096@gmail.com", encodedPass, encodedPass);
 		user2.addRole(new Role("ADMIN", user2));
 		userRepository.save(user2);
 		

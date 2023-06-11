@@ -34,7 +34,7 @@
                         Your account has been created. You can now login. <br>
                         </p>
                         Thanks,<br>
-                        Trung
+                        test
 							</div>
 
 						</td>
@@ -47,7 +47,6 @@
                                  font-weight: bold;
                                  padding: 15px;
                                  text-align: center;" >
-                       Copyright &copy; Trung Vo
                      </div>
                   </td>
                </tr>
